@@ -1,9 +1,9 @@
 {
   "name": "react-countdown",
-  "description": "React Countdown no require any dependencie.",
+  "description": "This component does not require any dependency.",
   "author": "Kusther <luciano.mamonas98@gmail.com> (https://github.com/kusther)",
   "version": "0.0.1",
-  "main": "Countdown.js",
+  "main": "./src/Countdown.js",
   "dependencies": {},
   "devDependencies": {},
   "license": "MIT"
