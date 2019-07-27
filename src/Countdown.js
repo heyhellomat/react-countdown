@@ -6,23 +6,19 @@ const Countdown = (props) => {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   setInterval(() => {
-    let now = new Date();
-    let dateArray = props.endsIn.split(/-|:| /g);
-    let daysFinal = dateArray[1] - now.getDate();
-    let hoursFinal = dateArray[3] - now.getHours();
-    let minutesFinal = dateArray[4] - now.getMinutes();
-    let secondsFinal = dateArray[5] - now.getSeconds();
-    setDays(daysFinal);
-    setHours(hoursFinal);
-    setMinutes(minutesFinal);
-    setSeconds(secondsFinal);
+    const endsInDate = new Date(props.endsIn).getTime();
+    const currentDate = new Date().getTime();
+    setDays(Math.floor((endsInDate - currentDate) / 86400000));
+    setHours(Math.floor((endsInDate - currentDate) / 3600000 % 24));
+    setMinutes(Math.floor((endsInDate - currentDate) / 60000 % 60));
+    setSeconds(Math.floor((endsInDate - currentDate) / 1000 % 60));
   }, 1000);
   return (
-    <div className="countdown">
-      <div className="days">{days} <span>Days</span></div>
-      <div className="hours">{hours} <span>Hours</span></div>
-      <div className="minutes">{minutes} <span>Minutes</span></div>
-      <div className="seconds">{seconds} <span>Seconds</span></div>
+    <div className="countdown-container">
+      <div className="countdown days">{days} <span>Days</span></div>
+      <div className="countdown hours">{hours} <span>Hours</span></div>
+      <div className="countdown minutes">{minutes} <span>Minutes</span></div>
+      <div className="countdown seconds">{seconds} <span>Seconds</span></div>
     </div>
   );
 }
